@@ -1,0 +1,22 @@
+
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: service1-route
+          uri: http://localhost:8080
+          predicates:
+            - Path=/service1/**
+          filters:
+            - StripPrefix=1
+        - id: service2-route
+          uri: http://localhost:8001
+          predicates:
+            - Path=/service2/**
+          filters:
+            - StripPrefix=1
+logging:
+  level:
+    org.springframework.cloud.gateway: Trace
